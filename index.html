@@ -6,13 +6,167 @@
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
+
+        function generateEmail(messages){
+        	for (var i = 0; i < messages.length; i++) {
+        		console.log(messages[i].sender);
+        		console.log(messages[i].subject);
+        		console.log(messages[i].date);
+        		console.log(messages[i].body);
+
+        		var emailElement = document.createElement('div');
+        		emailElement.className = 'email';
+        		document.getElementById('main').appendChild(emailElement);
+
+        		var senderElement= document.createElement('div');
+        		senderElement.className = 'sender';
+        		senderElement.innerHTML = messages[i].sender;
+        		emailElement.appendChild(senderElement);
+
+        		var subjectElement= document.createElement('div');
+        		subjectElement.className= 'subject';
+        		subjectElement.innerHTML = messages[i].subject;
+        		emailElement.appendChild(subjectElement);
+
+        		var dateElement = document.createElement('div');
+        		dateElement.className = 'date';
+        		dateElement.innerHTML = messages[i].date;
+        		emailElement.appendChild(dateElement);
+
+        		var bodyElement = document.createElement('div');
+        		bodyElement.className = 'body';
+        		bodyElement.innerHTML = messages[i].body;
+        		emailElement.appendChild(bodyElement);
+        	}
+        }
+        generateEmail(geemails);
+
+        //Email click to show body of original 10 messages only 
+        var elements = document.getElementsByClassName("email"); 
+			for(var i =0; i < elements.length; i++){
+  			var element = elements[i];
+  			element.addEventListener("click", handleClick);
+			}
+
+
+		function handleClick(){  
+  		var showBody = this.querySelectorAll(".body");
+  		for (var i = 0; i < showBody.length; i++) {
+  			showBody[i].classList.toggle("show");
+  		}
+		}  
+  		
+		
+		//Inbox counter for original 10 messages only
+		var inboxCount = document.getElementById("count");
+    		inboxCount = geemails.length;
+    		var newCount= document.createTextNode(inboxCount);
+    		count.appendChild(newCount);
+    		
+
+		
+    	//generate new messages.
+    	function generateNewMessages(){
+        var newMessage = getNewMessage();
         
+        console.log(newMessage);   
+    	console.log(newMessage.sender);  
+		console.log(newMessage.subject);
+		console.log(newMessage.date);
+		console.log(newMessage.body);
+        
+       
+
+        var emailElement = document.createElement('div');
+        emailElement.className = 'email';
+        document.getElementById('main').appendChild(emailElement);
+
+        var senderElement= document.createElement('div');
+        senderElement.className = 'sender';
+        senderElement.innerHTML = newMessage.sender;  
+        emailElement.appendChild(senderElement);
+
+        var subjectElement= document.createElement('div');
+        subjectElement.className= 'subject';
+        subjectElement.innerHTML = newMessage.subject;
+        emailElement.appendChild(subjectElement);
+
+        var dateElement = document.createElement('div');
+        dateElement.className = 'date';
+        dateElement.innerHTML = newMessage.date;
+        emailElement.appendChild(dateElement);
+
+        var bodyElement = document.createElement('div');
+        bodyElement.className = 'body';
+        bodyElement.innerHTML = newMessage.body;
+        emailElement.appendChild(bodyElement);
+        	
+       
+        //to add the new messages to the inbox counter
+        inboxCount++;
+        count.innerHTML = inboxCount;	
+
+        
+        //To be able to click the new messages to show/hide the body
+        var elements = document.getElementsByClassName("email"); 
+			for(var i =0; i < elements.length; i++){
+  			var element = elements[i];
+  			element.addEventListener("click", bodyClick);
+			}
+
+		function bodyClick(){  
+  		var showBody = this.querySelectorAll(".body");
+  		for (var i = 0; i < showBody.length; i++) {
+  			showBody[i].classList.toggle("show");
+  		}
+		} 
+
+      }
+
+      	//to call a new message every 5 sec
+      	setInterval(generateNewMessages, 5000);
+      
+     
+
+    
+
+    	
+
+    	
+    	
+    	
+
+
+    	
+    	
+    	
+
       };
     </script>
 	</head>
 	<body>
-		<div class="container" id="main">
-			Build Me!
-		</div>
+		
+			<div id="header">
+				<h1>Gee-Mail</h1>
+			</div>
+
+
+			<div id="menu">
+				<p id = "inboxCount"><b>My Inbox</b><span id="count"></span></p>
+			</div>
+
+	
+			<div class="container" id="main">
+				
+ 			</table>
+				
+			</div>
+		
+
+			
+
+
+
+		
 	</body>
 </html>

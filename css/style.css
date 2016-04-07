@@ -1,0 +1,28 @@
+#header {
+    background-color:black;
+    color:white;
+    padding:5px;
+}
+
+.sender, .subject, .date {
+	display: inline-block;
+	padding-right: 2em;
+	
+}
+
+div.email {
+	border-bottom: solid 1px;
+}
+
+div.body {
+	display: none;
+}
+
+div.body.show {
+	display: block;
+}
+
+span {
+
+
+}
